@@ -2,9 +2,7 @@ import { Request, Response } from 'express';
 import { ListUsersUseCase } from "../../domain/usecases/ListUsersUseCase";
 
 export class ListUsersController {
-  constructor(private listUserUseCase: ListUsersUseCase) {
-    
-  }
+  constructor(private listUserUseCase: ListUsersUseCase) { }
 
   handle(req: Request, res: Response) {
     try {

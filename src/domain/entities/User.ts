@@ -1,13 +1,9 @@
 export class User {
-  constructor(readonly id: string, readonly name: string, readonly email: string, readonly cpf: string) {
+  constructor(readonly id: string, readonly name: string, readonly email: string, readonly cpf: string) { }
 
-   }
-  
   static create(name: string, email: string, cpf: string) {
     const isValid = this.isValidCpf(cpf);
-    if (!isValid) {
-      throw new Error('Invalid CPF.')
-    }
+    if (!isValid) throw new Error('Invalid CPF.');
     const id = crypto.randomUUID();
     return new User(id, name, email, cpf);
   }
