@@ -1,33 +1,48 @@
-import { InMemoryDatabase } from "../../infrastructure/database/InMemoryDatabase";
 import { UserRepository } from "../repository/UserRepository";
 import { CreateUserUseCase } from "./CreateUserUseCase";
 
 describe('Create User UseCase', () => {
-  let userRepository: UserRepository;
+  let mockRepository: jest.Mocked<UserRepository>;
   let createUserUseCase: CreateUserUseCase;
 
-  beforeEach (() => {
-    userRepository = new InMemoryDatabase();
-    createUserUseCase = new CreateUserUseCase(userRepository);
+  beforeEach(() => {
+    mockRepository = {
+      save: jest.fn(),
+      findAll: jest.fn(),
+      findById: jest.fn(),
+      findByEmail: jest.fn(),
+      findByCpf: jest.fn()
+    };
+
+    createUserUseCase = new CreateUserUseCase(mockRepository);
   })
 
   it('Should be possible to create a user', () => {
+    mockRepository.findByEmail.mockReturnValueOnce(undefined);
+    mockRepository.findByCpf.mockReturnValueOnce(undefined);
     createUserUseCase.execute('John Doe', 'johndoe@email.com', '98765432100');
-    const user = userRepository.findByEmail('johndoe@email.com');
-    expect(user).toBeDefined();
-    expect(user?.id).toBeDefined();
-    expect(user?.name).toBe('John Doe');
-    expect(user?.email).toBe('johndoe@email.com');
-    expect(user?.cpf).toBe('98765432100');
+    expect(mockRepository.findByEmail).toHaveBeenCalled();
+    expect(mockRepository.findByCpf).toHaveBeenCalled();
+    expect(mockRepository.save).toHaveBeenCalled();
   })
 
   it('Should not be possible to create a user with an email that already exists', () => {
-    createUserUseCase.execute('John Doe', 'johndoe@email.com', '12345678909');
-    expect(() => createUserUseCase.execute('John Doe', 'johndoe@email.com', '12345678909')).toThrowError('Email already exists.');
+    mockRepository.findByEmail.mockReturnValue({
+      id: '1',
+      name: 'Jane Doe',
+      email: 'janedoe@email.com',
+      cpf: '98765432100'
+    })
+    expect(() => createUserUseCase.execute('Jane Doe', 'janedoe@email.com', '12345678909')).toThrowError('Email already exists.');
   })
 
   it('Should not be possible to create a user with an CPF that already exists', () => {
-    createUserUseCase.execute('John Doe', 'johndoe@email.com', '12345678909');
-    expect(() => createUserUseCase.execute('Jane Dou', 'janedou@email.com', '12345678909')).toThrowError('CPF already exists.');
+    mockRepository.findByCpf.mockReturnValue({
+      id: '1',
+      name: 'Jane Doe',
+      email: 'janedoe@email.com',
+      cpf: '98765432100'
+    })
+    expect(() => createUserUseCase.execute('Mike Doe', 'mikedoe@email.com', '98765432100')).toThrowError('CPF already exists.');
   })
 })
