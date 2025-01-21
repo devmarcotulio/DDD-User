@@ -1,7 +1,7 @@
 import { UserRepository } from "../repository/UserRepository";
 import { ListUsersUseCase } from "./ListUsersUseCase";
 
-describe('Create User UseCase', () => {
+describe('List Users UseCase', () => {
   let mockRepository: jest.Mocked<UserRepository>;
   let listUsersUseCase: ListUsersUseCase;
 
