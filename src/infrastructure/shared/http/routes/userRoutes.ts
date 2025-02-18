@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createUserController, getUserController, listUsersController } from "../../../../application/factories/UserFactory";
+import { createUserController, deleteUserController, getUserController, listUsersController } from "../../../../application/factories/UserFactory";
 import { Joi, Segments, celebrate } from "celebrate";
 
 const userRoutes = Router();
@@ -25,6 +25,10 @@ userRoutes.get('/findAll', (req, res) => {
 
 userRoutes.get('/findById/:id', (req, res) => {
   getUserController.handle(req, res)
+})
+
+userRoutes.delete('/delete/:id', (req, res) => {
+  deleteUserController.handle(req, res)
 })
 
 export { userRoutes };
