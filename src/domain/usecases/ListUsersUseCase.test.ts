@@ -11,7 +11,9 @@ describe('List Users UseCase', () => {
       findAll: jest.fn(),
       findById: jest.fn(),
       findByEmail: jest.fn(),
-      findByCpf: jest.fn()
+      findByCpf: jest.fn(),
+      findIndexById: jest.fn(),
+      delete: jest.fn()
     };
 
     listUsersUseCase = new ListUsersUseCase(mockRepository);

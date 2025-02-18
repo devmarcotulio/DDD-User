@@ -6,4 +6,6 @@ export interface UserRepository {
   findById(id: string): User | undefined;
   findByEmail(email: string): User | undefined;
   findByCpf(cpf: string): User | undefined;
+  findIndexById(id: string): number;
+  delete(index: number): void;
 }

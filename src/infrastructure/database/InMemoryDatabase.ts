@@ -24,4 +24,12 @@ export class InMemoryDatabase implements UserRepository {
   findByCpf(cpf: string): User | undefined {
     return this.users.find(element => element.cpf == cpf);
   }
+
+  findIndexById(id: string): number {
+    return this.users.findIndex(user => user.id == id)
+  }
+
+  delete(index: number): void {
+    this.users.splice(index, 1);
+  }
 }
