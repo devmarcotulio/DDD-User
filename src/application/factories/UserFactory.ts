@@ -3,6 +3,8 @@ import { ListUsersController } from "../controllers/ListUsersController";
 import { CreateUserUseCase } from "../../domain/usecases/CreateUserUseCase";
 import { ListUsersUseCase } from "../../domain/usecases/ListUsersUseCase";
 import { InMemoryDatabase } from "../../infrastructure/database/InMemoryDatabase";
+import { GetUserUseCase } from "../../domain/usecases/GetUserUseCase";
+import { GetUserController } from "../controllers/GetUserController";
 
 const userRepository = new InMemoryDatabase();
 const createUserUseCase = new CreateUserUseCase(userRepository);
@@ -11,4 +13,7 @@ const createUserController = new CreateUserController(createUserUseCase);
 const listUsersUseCase = new ListUsersUseCase(userRepository);
 const listUsersController = new ListUsersController(listUsersUseCase);
 
-export { createUserController, listUsersController };
+const getUserUseCase = new GetUserUseCase(userRepository);
+const getUserController = new GetUserController(getUserUseCase);
+
+export { createUserController, listUsersController, getUserController};

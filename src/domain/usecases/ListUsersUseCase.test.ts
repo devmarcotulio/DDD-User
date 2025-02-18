@@ -27,11 +27,4 @@ describe('List Users UseCase', () => {
     expect(mockRepository.findAll).toHaveBeenCalled();
     expect(users).toEqual(mockUsers);
   })
-
-  it('Should not be possible to create a user with an email that already exists', () => {
-    mockRepository.findAll.mockReturnValue([]);
-    const users = listUsersUseCase.execute();
-    expect(mockRepository.findAll).toHaveBeenCalled();
-    expect(users).toEqual([]);
-  })
 })

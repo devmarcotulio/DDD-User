@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createUserController, listUsersController } from "../../../../application/factories/UserFactory";
+import { createUserController, getUserController, listUsersController } from "../../../../application/factories/UserFactory";
 import { Joi, Segments, celebrate } from "celebrate";
 
 const userRoutes = Router();
@@ -21,6 +21,10 @@ userRoutes.post('/create',
 
 userRoutes.get('/findAll', (req, res) => {
   listUsersController.handle(req, res)
+})
+
+userRoutes.get('/findById/:id', (req, res) => {
+  getUserController.handle(req, res)
 })
 
 export { userRoutes };
