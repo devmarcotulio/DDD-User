@@ -30,17 +30,17 @@ Esta aplicação é um exemplo de gerenciamento de usuários utilizando os princ
 
 2. Execute o servidor em modo de desenvolvimento com **npm run dev**
 
-3. Execute os testes com  **npm test**
-
 ### Endpoints
 
 **POST /users/create**
 
+  ```json
   {
     "name": "John Doe",
     "email": "johndoe@email.com",
     "cpf": "12345678909"
   }
+  ```
 
 **GET /users/findAll**
 
@@ -49,5 +49,5 @@ Esta aplicação é um exemplo de gerenciamento de usuários utilizando os princ
 **DELETE /users/delete/:id**
 
 ### Testes
- 
+- Execute os testes com  **npm test**
 A aplicação possui testes unitários para as entidades e casos de uso. Os testes estão localizados na pasta src/domain/usecases e src/domain/entities.
