@@ -26,7 +26,6 @@ describe('Get User UseCase', () => {
       email: 'janedoe@email.com', 
       cpf: '12345678900' 
     }
-
     mockRepository.findById.mockReturnValueOnce(mockUsers);
     const users = getUserUseCase.execute(mockUsers.id);
     expect(mockRepository.findById).toHaveBeenCalled();
