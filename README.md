@@ -24,24 +24,17 @@ Esta aplicação é um exemplo de gerenciamento de usuários utilizando os princ
 - Node.js (v20 ou superior)
 - npm ou yarn
 
-### Instalação
+### Instalação e execução
 
-2. Instale as dependências:
+1. Instale as dependências com **npm install**
 
-  **npm install**
+2. Execute o servidor em modo de desenvolvimento com **npm run dev**
 
-3. Executando o Servidor modo de desenvolvimento:
-
-  **npm run dev**
-
-4. Executando os Testes
-
-  **npm test**
+3. Execute os testes com  **npm test**
 
 ### Endpoints
 
 **POST /users/create**
-  Cria um novo usuário.
 
   {
     "name": "John Doe",
@@ -50,13 +43,10 @@ Esta aplicação é um exemplo de gerenciamento de usuários utilizando os princ
   }
 
 **GET /users/findAll**
-  Lista todos os usuários.
 
 **GET /users/findById/:id**
-  Busca um usuário pelo ID.
 
 **DELETE /users/delete/:id**
-  Deleta um usuário pelo ID.
 
 ### Testes
  
