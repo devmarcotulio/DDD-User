@@ -49,5 +49,7 @@ Esta aplicação é um exemplo de gerenciamento de usuários utilizando os princ
 **DELETE /users/delete/:id**
 
 ### Testes
-- Execute os testes com  **npm test**
-A aplicação possui testes unitários para as entidades e casos de uso. Os testes estão localizados na pasta src/domain/usecases e src/domain/entities.
+
+1. Execute os testes com  **npm test**
+
+**A aplicação possui testes unitários para as entidades e casos de uso. Os testes estão localizados na pasta src/domain/usecases e src/domain/entities.**
